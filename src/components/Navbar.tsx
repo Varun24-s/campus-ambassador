@@ -19,7 +19,7 @@ export default function Navbar() {
       </Link>
 
       {/* Nav links + button */}
-      <div className="flex items-center gap-8">
+      <div className="flex items-center text-xl gap-8">
         <Link href="" className="hover:text-yellow-400">About Us</Link>
         <Link href="" className="hover:text-yellow-400">Pros</Link>
         <Link href="" className="hover:text-yellow-400">FAQs</Link>
@@ -28,7 +28,7 @@ export default function Navbar() {
 
         {/* Register button */}
         <Link href="">
-          <button className="px-5 py-2 bg-yellow-500 text-gray-800 font-semibold rounded-xl shadow-md hover:bg-yellow-600 transition">
+          <button className="px-5 py-2 bg-[#EEB56D] text-gray-900 rounded-xl shadow-md hover:bg-yellow-600 transition">
             Register
           </button>
         </Link>
