@@ -1,6 +1,12 @@
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
+import localFont from "next/font/local"
+
+const myFont = localFont({
+  src: './fonts/Raleway,Roboto_Slab/Raleway/Raleway-Italic-VariableFont_wght.ttf',
+  display: "swap",
+})
 
 export const metadata: Metadata = {
   title: "My App",
@@ -27,7 +33,7 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang="en">
+      <html lang="en" className={`${myFont.className} relative`}>
         <body className="bg-gray-50 min-h-screen">{children}</body>
       </html>
     </ClerkProvider>

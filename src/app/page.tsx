@@ -1,15 +1,15 @@
 "use client";
 
 import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import Navbar from "@/components/Navbar";
 
 export default function LandingPage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-      <h1 className="text-4xl font-bold mb-6">Welcome to My App</h1>
-      <p className="text-lg text-gray-600 mb-10">Manage your college events effortlessly.</p>
+    <main className="flex flex-col  min-h-screen bg-gray-50">
+      < Navbar />
 
       <SignedOut>
-        <div className="flex flex-col gap-4">
+        {/* <div className="flex flex-col gap-4">
           <SignUpButton
             mode="redirect"
             forceRedirectUrl="/complete-profile"
@@ -24,7 +24,7 @@ export default function LandingPage() {
               Login
             </button>
           </SignInButton>
-        </div>
+        </div> */}
       </SignedOut>
 
       <SignedIn>
