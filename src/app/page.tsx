@@ -2,6 +2,7 @@
 
 import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import Navbar from "@/components/Navbar";
+import { HeroSection } from "@/components/HeroSection";
 
 export default function LandingPage() {
   return (
@@ -9,6 +10,12 @@ export default function LandingPage() {
       < Navbar />
 
       <SignedOut>
+
+
+
+<HeroSection />
+
+
         {/* <div className="flex flex-col gap-4">
           <SignUpButton
             mode="redirect"
