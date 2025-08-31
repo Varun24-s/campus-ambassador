@@ -7,13 +7,13 @@ import { HeroSection } from "@/components/HeroSection";
 export default function LandingPage() {
   return (
     <main className="flex flex-col  min-h-screen bg-white">
-      < Navbar />
+
 
       <SignedOut>
 
 
-
-<HeroSection />
+        < Navbar />
+        <HeroSection />
 
 
         {/* <div className="flex flex-col gap-4">

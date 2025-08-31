@@ -1,16 +1,16 @@
 "use client";
 
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
+import { SignUpButton } from "@clerk/nextjs";
 
 export default function Navbar() {
   return (
     <nav className="w-full bg-white px-8 py-4 flex items-center justify-between text-black">
+      {/* Logo */}
       <Link href="/" className="flex items-center">
         <Image
-          src="/logo.webp"   
+          src="/logo.webp"
           alt="My App Logo"
           width={65}
           height={65}
@@ -26,14 +26,15 @@ export default function Navbar() {
         <Link href="" className="hover:text-yellow-400">TnC</Link>
         <Link href="" className="hover:text-yellow-400">Contact Us</Link>
 
-        {/* Register button */}
-        <Link href="">
+        {/* Clerk Register button */}
+        <SignUpButton mode="redirect" forceRedirectUrl="/complete-profile">
           <button className="px-5 py-2 bg-[#EEB56D] text-gray-900 rounded-xl shadow-md hover:bg-yellow-600 transition">
             Register
           </button>
-        </Link>
+        </SignUpButton>
       </div>
     </nav>
   );
 }
+
 
