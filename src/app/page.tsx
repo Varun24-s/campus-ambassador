@@ -6,8 +6,8 @@ import { HeroSection } from "@/components/HeroSection";
 import { AboutSection } from "@/components/About";
 import { ProgramInfoSection } from "@/components/Aboutca";
 import  { FAQSection } from "../components/Faq"
-
-
+import { ContactSection } from "@/components/Contact"
+import { Footer } from "@/components/Footer"
 export default function LandingPage() {
   return (
     <main className="flex flex-col  min-h-screen bg-white">
@@ -21,6 +21,8 @@ export default function LandingPage() {
         <AboutSection />
         <ProgramInfoSection />
         <FAQSection />
+        <ContactSection />
+        <Footer />
 
         {/* <div className="flex flex-col gap-4">
           <SignUpButton
