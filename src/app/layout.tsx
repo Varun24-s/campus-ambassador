@@ -32,6 +32,8 @@ export default function RootLayout({
           card: "shadow-lg rounded-xl p-4",
         },
       }}
+      afterSignInUrl="/dashboard"          
+      afterSignUpUrl="/complete-profile"
     >
       <html lang="en">
         <body className={`${myFont.className} bg-white min-h-screen`}>
