@@ -90,7 +90,7 @@ export default function CompleteProfilePage() {
   if (!user) return null;
 
   return (
-    <main className="flex items-center justify-center min-h-screen text-gray-700 bg-gray-50 px-4">
+    <main className="flex items-center justify-center min-h-screen text-gray-700 bg-amber-50/50 px-4">
       <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-lg">
         {/* Header */}
         <div className="text-center mb-6">

@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function NavDash() {
   return (
-    <nav className="w-full flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white">
+    <nav className="w-full flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-amber-50/50">
       <div className="flex items-center gap-2">
       <Link href="/" className="flex-shrink-0">
                             <Image

@@ -6,7 +6,7 @@ import NavDash from "@/components/NavDash";
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col">
+    <div className="min-h-screen bg-amber-50/50 text-black flex flex-col">
       <NavDash />
 
       <div className="flex flex-col sm:flex-row flex-1">
