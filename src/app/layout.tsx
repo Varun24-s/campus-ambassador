@@ -9,7 +9,7 @@ const myFont = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "My App",
+  title: "E-Cell NITB CA",
   description: "Custom Clerk Sign-Up with College/Branch/Year",
 };
 
