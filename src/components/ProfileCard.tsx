@@ -1,10 +1,12 @@
+import { UserButton } from "@clerk/nextjs";
+
 export default function ProfileCard() {
     return (
       <div className="bg-white shadow rounded-2xl p-6 border border-gray-100">
         <div className="flex flex-col items-center text-center">
-          <div className="w-20 h-20 rounded-full bg-gray-200 mb-4" />
-          <h2 className="text-lg font-semibold">Alex Johnson</h2>
-          <p className="text-sm text-gray-500">Computer Science • Senior</p>
+          <UserButton/>
+          <h2 className="text-lg font-semibold">Name</h2>
+          <p className="text-sm text-gray-500">College</p>
           <p className="text-sm text-[#EEB56D] font-medium mt-2">
             ★ Level 5 Ambassador
           </p>
