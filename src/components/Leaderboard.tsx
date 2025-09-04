@@ -11,7 +11,7 @@ interface Profile {
 }
 
 interface LeaderboardProps {
-  leaderboardData: Profile[];
+  leaderboardData: Profile[] | any; // allow debugging even if not array
 }
 
 export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
@@ -22,17 +22,33 @@ export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
   const { user } = useUser();
   const userEmail = user?.primaryEmailAddress?.emailAddress || "";
 
+  // 🔍 Debug input data
+  console.log("LeaderboardData prop:", leaderboardData);
+  console.log("Type of leaderboardData:", typeof leaderboardData);
+  if (leaderboardData && !Array.isArray(leaderboardData)) {
+    console.warn("⚠️ leaderboardData is NOT an array. Keys:", Object.keys(leaderboardData));
+  }
+
   useEffect(() => {
-    if (!leaderboardData) return;
+    if (!Array.isArray(leaderboardData)) {
+      console.error("leaderboardData is not an array in useEffect", leaderboardData);
+      return;
+    }
+
+    console.log("leaderboardData is an array, length:", leaderboardData.length);
 
     // Remove duplicates & sort
     const uniqueProfiles = Array.from(
-      new Map(leaderboardData.map((p) => [p.Email, p])).values()
+      new Map(leaderboardData.map((p: Profile) => [p.Email, p])).values()
     );
+
+    console.log("🧹 Unique profiles:", uniqueProfiles);
 
     const sortedProfiles = uniqueProfiles.sort(
       (a, b) => (b.points || 0) - (a.points || 0)
     );
+
+    console.log("📈 Sorted profiles:", sortedProfiles);
 
     setProfiles(sortedProfiles);
     setFilteredProfiles(sortedProfiles);
@@ -40,14 +56,17 @@ export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
 
   useEffect(() => {
     const lowerSearch = search.toLowerCase();
-    setFilteredProfiles(
-      profiles.filter(
-        (p) =>
-          p.Name.toLowerCase().includes(lowerSearch) ||
-          p.Email.toLowerCase().includes(lowerSearch) ||
-          p.College.toLowerCase().includes(lowerSearch)
-      )
+
+    const filtered = profiles.filter(
+      (p) =>
+        p.Name.toLowerCase().includes(lowerSearch) ||
+        p.Email.toLowerCase().includes(lowerSearch) ||
+        p.College.toLowerCase().includes(lowerSearch)
     );
+
+    console.log("🔍 Filtered profiles:", filtered);
+
+    setFilteredProfiles(filtered);
   }, [search, profiles]);
 
   return (
@@ -65,7 +84,7 @@ export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
 
       {/* Scrollable Leaderboard List */}
       <div className="flex-1 overflow-y-auto p-3 space-y-3">
-        {filteredProfiles.length === 0 ? (
+        {!Array.isArray(filteredProfiles) || filteredProfiles.length === 0 ? (
           <p className="text-gray-500 text-center">No profiles found.</p>
         ) : (
           <ul className="space-y-3">
