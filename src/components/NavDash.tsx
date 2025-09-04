@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function NavDash() {
     return (
-        <nav className="w-full z-50 bg-white/20 backdrop-blur-lg border-b border-white/30 shadow-md">
+        <nav className="w-full z-50 glass-card border-white/30 rounded-0 shadow-md">
             <div className="flex items-center justify-start px-6 py-5 gap-5">
                 {/* Logo / App Name */}
                 <Link href="/" className="flex-shrink-0">

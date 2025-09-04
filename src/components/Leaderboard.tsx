@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { useUser } from "@clerk/nextjs";
 
 interface Profile {
@@ -10,7 +10,11 @@ interface Profile {
   points: number;
 }
 
-export default function Leaderboard() {
+interface LeaderboardProps {
+  leaderboardData: Profile[];
+}
+
+export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [search, setSearch] = useState("");
   const [filteredProfiles, setFilteredProfiles] = useState<Profile[]>([]);
@@ -19,35 +23,23 @@ export default function Leaderboard() {
   const userEmail = user?.primaryEmailAddress?.emailAddress || "";
 
   useEffect(() => {
-    const fetchProfiles = async () => {
-      try {
-        const res = await fetch("/api/get-profile");
-        if (!res.ok) throw new Error("Failed to fetch profiles");
+    if (!leaderboardData) return;
 
-        const data: Profile[] = await res.json();
+    // Remove duplicates & sort
+    const uniqueProfiles = Array.from(
+      new Map(leaderboardData.map((p) => [p.Email, p])).values()
+    );
 
-        // Remove duplicates & sort
-        const uniqueProfiles = Array.from(
-          new Map(data.map((p) => [p.Email, p])).values()
-        );
+    const sortedProfiles = uniqueProfiles.sort(
+      (a, b) => (b.points || 0) - (a.points || 0)
+    );
 
-        const sortedProfiles = uniqueProfiles.sort(
-          (a, b) => (b.points || 0) - (a.points || 0)
-        );
-
-        setProfiles(sortedProfiles);
-        setFilteredProfiles(sortedProfiles);
-      } catch (err) {
-        console.error("Error loading leaderboard:", err);
-      }
-    };
-
-    fetchProfiles();
-  }, []);
+    setProfiles(sortedProfiles);
+    setFilteredProfiles(sortedProfiles);
+  }, [leaderboardData]);
 
   useEffect(() => {
     const lowerSearch = search.toLowerCase();
-
     setFilteredProfiles(
       profiles.filter(
         (p) =>
@@ -59,7 +51,7 @@ export default function Leaderboard() {
   }, [search, profiles]);
 
   return (
-    <div className=" h-full flex flex-col rounded-2xl shadow-lg">
+    <div className="h-full flex flex-col rounded-2xl shadow-lg">
       {/* Search Header (sticky) */}
       <div className="p-4 sticky top-0 z-10 backdrop-blur-lg border-b border-white/20">
         <input
@@ -80,7 +72,6 @@ export default function Leaderboard() {
             {filteredProfiles.map((p, idx) => {
               const isCurrentUser = p.Email === userEmail;
 
-              // rank badge
               let rankBadge;
               if (idx === 0) rankBadge = "🥇";
               else if (idx === 1) rankBadge = "🥈";
@@ -90,7 +81,7 @@ export default function Leaderboard() {
               return (
                 <li
                   key={p.Email}
-                  className={`flex justify-between items-center p-3 rounded-xl  border transition hover:scale-[1.05] ${
+                  className={`flex justify-between items-center p-3 rounded-xl border transition hover:scale-[1.05] ${
                     isCurrentUser
                       ? "bg-yellow-100/60 border-yellow-400"
                       : "bg-white border-yellow-400"
