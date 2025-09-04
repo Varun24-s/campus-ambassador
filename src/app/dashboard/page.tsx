@@ -23,8 +23,8 @@ export default function DashboardPage() {
                 const [profileRes, tasksRes, leaderboardRes] = await Promise.all([
                     fetch("/api/get-profile"),
                     fetch("/api/get-tasks"),
-                    fetch("/api/get-profile"), // same as profile, used for leaderboard
-                ]);
+                    fetch("/api/get-leaderboard"), // ✅ new endpoint
+                  ]);
 
                 const [profileJson, tasksJson, leaderboardJson] = await Promise.all([
                     profileRes.json(),

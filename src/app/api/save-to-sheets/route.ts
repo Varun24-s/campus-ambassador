@@ -11,7 +11,10 @@ export async function POST(req: NextRequest) {
     const { name, email, mobile, college, branch, year } = data;
 
     if (!name || !email) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
     }
 
     const auth = new google.auth.JWT({
@@ -22,22 +25,35 @@ export async function POST(req: NextRequest) {
 
     const sheets = google.sheets({ version: "v4", auth });
 
-    const appendRes = await sheets.spreadsheets.values.append({
+    // Match your actual Users sheet and include all headers
+    await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID!,
-      range: "Sheet1!A:G",
+      range: "Users!A:J", // A:J covers 10 columns (Name → totalTasks)
       valueInputOption: "RAW",
       requestBody: {
         values: [
-          [name, email, mobile, college, branch, year, new Date().toLocaleString()],
+          [
+            name,
+            email,
+            mobile,
+            college,
+            branch,
+            year,
+            new Date().toLocaleString(),
+            0, // points default
+            0, // tasksDone default
+            0, // totalTasks default
+          ],
         ],
       },
     });
 
-    console.log("Google Sheets append response:", appendRes.status);
-
     return NextResponse.json({ message: "Saved to Google Sheets" });
   } catch (err: any) {
     console.error("Error in /save-to-sheets:", err);
-    return NextResponse.json({ error: err.message || "Unknown error" }, { status: 500 });
+    return NextResponse.json(
+      { error: err.message || "Unknown error" },
+      { status: 500 }
+    );
   }
 }
