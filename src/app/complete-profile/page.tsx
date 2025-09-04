@@ -65,10 +65,10 @@ export default function CompleteProfilePage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const email = user.primaryEmailAddress?.emailAddress || "";
+    const email = user?.primaryEmailAddress?.emailAddress || "";
 
     try {
-      await user.update({
+      await user?.update({
         unsafeMetadata: { name, mobile, college, branch, year },
       });
 

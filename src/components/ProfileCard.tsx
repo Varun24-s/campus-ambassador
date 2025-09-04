@@ -4,13 +4,13 @@ import { useUser, UserButton } from "@clerk/nextjs";
 import MagnetLines from "@/components/MagnetLines";
 
 interface ProfileCardProps {
-  profileData: any; // the data passed from DashboardPage
+  profileData: any; // array expected
 }
 
 export default function ProfileCard({ profileData }: ProfileCardProps) {
   const { user } = useUser();
 
-  if (!profileData || !user) {
+  if (!profileData || !user || !Array.isArray(profileData)) {
     return (
       <div className="bg-white shadow rounded-2xl p-4 sm:p-6 border border-gray-100">
         <p className="text-center text-gray-500 text-sm sm:text-base">
