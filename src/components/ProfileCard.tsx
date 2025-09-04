@@ -4,19 +4,36 @@ import { useUser, UserButton } from "@clerk/nextjs";
 import MagnetLines from "@/components/MagnetLines";
 
 interface ProfileCardProps {
-  profileData: any[];
+  profileData: any; // the data passed from DashboardPage
 }
 
 export default function ProfileCard({ profileData }: ProfileCardProps) {
-  const { user, isLoaded } = useUser();
-  if (!isLoaded || !user) return null;
+  const { user } = useUser();
 
-  const myEmail = user.primaryEmailAddress?.emailAddress?.toLowerCase() || "";
+  if (!profileData || !user) {
+    return (
+      <div className="bg-white shadow rounded-2xl p-4 sm:p-6 border border-gray-100">
+        <p className="text-center text-gray-500 text-sm sm:text-base">
+          Loading profile...
+        </p>
+      </div>
+    );
+  }
+
+  const myEmail = user.primaryEmailAddress?.emailAddress;
   const profile = profileData.find(
-    (p: any) => p.Email?.toLowerCase() === myEmail
+    (p: any) => p.Email?.toLowerCase() === myEmail?.toLowerCase()
   );
 
-  if (!profile) return null;
+  if (!profile) {
+    return (
+      <div className="bg-white shadow rounded-2xl p-4 sm:p-6 border border-gray-100">
+        <p className="text-center text-gray-500 text-sm sm:text-base">
+          Profile not found
+        </p>
+      </div>
+    );
+  }
 
   const tasksDone = profile.tasksDone || 0;
   const totalTasks = profile.totalTasks || 0;
@@ -26,28 +43,23 @@ export default function ProfileCard({ profileData }: ProfileCardProps) {
     <div className="flex flex-col gap-6">
       {/* Profile Card */}
       <div className="bg-white shadow rounded-2xl p-4 sm:p-6 border border-gray-100 flex flex-col">
-        {/* Header */}
         <div className="flex flex-col items-center text-center">
           <UserButton afterSignOutUrl="/" />
           <h2 className="text-base sm:text-lg font-semibold mt-2">{profile.Name}</h2>
           <p className="text-xs sm:text-sm text-gray-500">{profile.College}</p>
         </div>
 
-        {/* Stats */}
         <div className="mt-4 sm:mt-6 grid grid-cols-2 text-center gap-y-4">
           <div>
             <p className="text-lg sm:text-2xl font-bold">{points}</p>
             <p className="text-xs sm:text-sm text-gray-500">Total Points</p>
           </div>
           <div>
-            <p className="text-lg sm:text-2xl font-bold">
-              {tasksDone}/{totalTasks}
-            </p>
+            <p className="text-lg sm:text-2xl font-bold">{tasksDone}/{totalTasks}</p>
             <p className="text-xs sm:text-sm text-gray-500">Tasks Done</p>
           </div>
         </div>
 
-        {/* Progress Bar */}
         <div className="mt-4 sm:mt-6">
           <p className="text-[10px] sm:text-xs text-gray-500">
             {Math.max(totalTasks - tasksDone, 0)} more tasks to reach goal
@@ -68,7 +80,7 @@ export default function ProfileCard({ profileData }: ProfileCardProps) {
         <MagnetLines
           rows={6}
           columns={6}
-          containerSize="29vmin"
+          containerSize="30vmin"
           lineColor="#EFB000"
           lineWidth="0.8vmin"
           lineHeight="5vmin"

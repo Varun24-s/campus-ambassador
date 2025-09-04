@@ -7,6 +7,7 @@ import TaskTabs from "@/components/TaskTabs";
 import NavDash from "@/components/NavDash";
 import Silk from "@/components/Silk";
 import LoaderDash from "@/components/Loaderdash";
+import Plasma from "@/components/Plasma";
 
 export default function DashboardPage() {
     const [loading, setLoading] = useState(true);
@@ -45,11 +46,18 @@ export default function DashboardPage() {
     }, []);
 
     return (
-        <div className="relative min-h-screen text-black flex flex-col overflow-hidden">
+        <div className="relative min-h-screen text-black bg-amber-50 flex flex-col overflow-hidden">
             {/* Plasma Background */}
-            <div className="absolute inset-0 -z-10">
-                <Silk speed={5} scale={1} color="#f5cc8c" noiseIntensity={1.5} rotation={0} />
-            </div>
+            {/* <div className="absolute inset-0 -z-10">
+                <Plasma
+                    color="#ed9a15"
+                    speed={0.6}
+                    direction="forward"
+                    scale={1.1}
+                    opacity={0.8}
+                    mouseInteractive={true}
+                />
+            </div> */}
 
             {/* Navbar */}
             <NavDash />
