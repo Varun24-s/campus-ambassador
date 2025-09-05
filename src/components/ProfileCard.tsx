@@ -14,7 +14,7 @@ interface Profile {
   totalTasks: number;
 }
 
-export default function ProfileCard() {
+export default function ProfileCard({ profileData }: { profileData: Profile }) {
   const { user } = useUser();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
