@@ -112,14 +112,20 @@ export default function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <motion.button
-                                className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-white bg-black rounded-full overflow-hidden"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                            <SignInButton
+                                mode="redirect"
+                                forceRedirectUrl="/dashboard"
+                                signUpForceRedirectUrl="/complete-profile"
                             >
-                                <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                                <span className="relative">Register Now</span>
-                            </motion.button>
+                                <motion.button
+                                    className="group relative inline-flex items-center justify-center px-6 py-2.5 text-base font-bold text-white bg-black rounded-full overflow-hidden"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                                    <span className="relative">Let's Go</span>
+                                </motion.button>
+                            </SignInButton>
                         </div>
                     </motion.div>
                 )}

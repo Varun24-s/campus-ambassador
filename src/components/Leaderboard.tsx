@@ -75,7 +75,7 @@ export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
       <div className="p-4 sticky top-0 z-10 backdrop-blur-lg border-b border-white/20">
         <input
           type="text"
-          placeholder="Search by name, email or college..."
+          placeholder="Search ..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-full p-4 text-sm rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400"
