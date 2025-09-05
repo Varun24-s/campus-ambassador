@@ -48,7 +48,7 @@ export default function DashboardPage() {
     }, []);
 
     return (
-        <div className="relative min-h-screen text-black bg-amber-50 flex flex-col overflow-hidden">
+        <div className="relative min-h-screen text-black bg-amber-50/50 flex flex-col overflow-hidden">
             {/* Plasma Background */}
             {/* <div className="absolute inset-0 -z-10">
                 <Plasma
