@@ -10,7 +10,7 @@ import { Footer } from "@/components/Footer";
 
 export default function LandingPage() {
   return (
-    <main className="flex flex-col min-h-screen bg-white">
+    <main className="flex flex-col min-h-screen bg-amber-50/50">
       <Navbar />
 
       <HeroSection />
