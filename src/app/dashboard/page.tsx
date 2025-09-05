@@ -7,6 +7,8 @@ import TaskTabs from "@/components/TaskTabs";
 import NavDash from "@/components/NavDash";
 import Silk from "@/components/Silk";
 import LoaderDash from "@/components/Loaderdash";
+import { LoaderThree } from '@/components/loader';
+
 import Plasma from "@/components/Plasma";
 
 export default function DashboardPage() {
@@ -68,7 +70,8 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-center h-[70vh]">
                         {/* You can replace this with any loader */}
                         <div className="absolute inset-0 flex items-center justify-center z-50">
-                            <LoaderDash />
+                            {/* <LoaderDash /> */}
+                            <LoaderThree />
                         </div>
                     </div>
                 ) : (
