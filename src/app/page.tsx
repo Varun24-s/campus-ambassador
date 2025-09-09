@@ -80,7 +80,7 @@ export default function LandingPage() {
       </AnimatePresence> */}
 
       {/* Page Content */}
-      <main className="flex flex-col min-h-screen bg-white">
+      <main className="flex flex-col min-h-screen bg-amber-50/50">
         <Navbar />
         <HeroSection />
         <AboutSection />
