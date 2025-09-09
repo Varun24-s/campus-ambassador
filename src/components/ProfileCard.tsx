@@ -2,6 +2,7 @@
 
 import { useUser, UserButton } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
+import Spline from "@splinetool/react-spline";
 
 interface Profile {
   name: string;
@@ -72,7 +73,7 @@ export default function ProfileCard({ profileData }: { profileData: Profile }) {
       <div className="flex flex-col items-center text-center">
         <UserButton afterSignOutUrl="/" />
         <h2 className="text-lg font-semibold mt-2">{name}</h2>
-        
+
       </div>
 
       <div className="mt-6 grid grid-cols-2 text-center gap-y-4">

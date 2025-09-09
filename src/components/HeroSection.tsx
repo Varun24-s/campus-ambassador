@@ -130,6 +130,7 @@
 
 "use client";
 
+import { SignInButton } from '@clerk/nextjs';
 import { motion } from 'framer-motion';
 import { MoveRight } from "lucide-react";
 
@@ -197,15 +198,26 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div variants={itemVariants} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <SignInButton
+              mode="redirect"
+              forceRedirectUrl="/dashboard"
+              signUpForceRedirectUrl="/complete-profile"
+            >
               <motion.button
-                className="group relative inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-white bg-black rounded-full overflow-hidden transition-transform transform hover:scale-105"
+                className="group relative inline-flex items-center justify-center px-6 py-2.5 text-base font-bold text-white bg-black rounded-full overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
+                {/* Gradient hover effect */}
                 <span className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent transform -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                <span>Get Started</span>
+
+                {/* Button text */}
+                <span className="relative">Get Started</span>
+
+                {/* Optional icon if you want the arrow */}
                 <MoveRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </motion.button>
+            </SignInButton>
           </motion.div>
         </div>
 
@@ -224,11 +236,11 @@ export function HeroSection() {
             <div className="absolute inset-8 bg-white rounded-full opacity-50 blur-xl"></div>
 
             <div className="absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-md rounded-3xl shadow-2xl border border-white/20">
-                <img
-                  src="/herosection.png"
-                  alt="Campus Ambassador Program"
-                  className="w-full h-full object-cover rounded-3xl"
-                />
+              <img
+                src="/herosection.png"
+                alt="Campus Ambassador Program"
+                className="w-full h-full object-cover rounded-3xl"
+              />
             </div>
           </div>
         </motion.div>

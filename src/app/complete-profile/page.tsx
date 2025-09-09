@@ -8,6 +8,10 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Command, CommandInput, CommandEmpty, CommandGroup, CommandItem } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
 import { branches } from "@/data/branch"; // Your static branch list
+import { AnimatePresence, motion } from "framer-motion";
+import { LoaderThree } from "@/components/loader";
+import { LoaderOne } from "@/components/ui/loader";
+import { div } from "framer-motion/client";
 
 export default function CompleteProfilePage() {
   const { user, isLoaded } = useUser();
@@ -86,7 +90,23 @@ export default function CompleteProfilePage() {
     }
   };
 
-  if (!isLoaded) return <p>Loading...</p>;
+  if (!isLoaded) return (
+    <>
+      <AnimatePresence mode="wait">
+        {(
+          <motion.div
+            key="loader"
+            className="fixed inset-0 flex items-center justify-center bg-amber-50 z-50"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <LoaderThree />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
   if (!user) return null;
 
   return (
@@ -95,13 +115,13 @@ export default function CompleteProfilePage() {
         {/* Header */}
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-yellow-600">Campus Ambassador Profile</h1>
-          <p className="text-gray-600 text-sm">
+          <p className="text-gray-600 text-sm mt-4">
             Complete your profile to get started as a campus ambassador
           </p>
         </div>
 
         {/* Profile Icon */}
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6 mt-4">
           <div className="bg-yellow-100 p-4 rounded-full">
             <UserIcon className="w-10 h-10 text-yellow-500" />
           </div>
@@ -115,7 +135,7 @@ export default function CompleteProfilePage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 placeholder:text-gray-700"
           />
 
           {/* College Dropdown */}
@@ -126,7 +146,7 @@ export default function CompleteProfilePage() {
                   type="button"
                   role="combobox"
                   aria-expanded={collegeOpen}
-                  className="w-full justify-between border border-gray-300 p-3 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-yellow-400 flex"
+                  className="w-full justify-between border border-gray-300 p-3 sm:p-3.5 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-yellow-400 flex h-12 sm:h-12 "
                 >
                   {college || "Select College/University"}
                   <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
@@ -136,11 +156,14 @@ export default function CompleteProfilePage() {
               <PopoverContent side="bottom" align="start" className="w-full max-h-60 overflow-auto p-0 z-50">
                 <Command>
                   <CommandInput
-                    placeholder="Search college..."
+                    placeholder="Search or type college..."
                     value={collegeQuery}
-                    onValueChange={setCollegeQuery}
+                    onValueChange={(value) => {
+                      setCollegeQuery(value);
+                      setCollege(value); // allow typing custom name
+                    }}
                   />
-                  <CommandEmpty>No college found.</CommandEmpty>
+                  <CommandEmpty>No college found. You can type your college name.</CommandEmpty>
                   <CommandGroup>
                     {uniqueCollegeOptions.map((c) => (
                       <CommandItem
@@ -152,7 +175,9 @@ export default function CompleteProfilePage() {
                           setCollegeQuery("");
                         }}
                       >
-                        <Check className={cn("mr-2 h-4 w-4", college === c ? "opacity-100" : "opacity-0")} />
+                        <Check
+                          className={cn("mr-2 h-4 w-4", college === c ? "opacity-100" : "opacity-0")}
+                        />
                         {c}
                       </CommandItem>
                     ))}
@@ -163,7 +188,7 @@ export default function CompleteProfilePage() {
           </div>
 
           {/* Branch + Year */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {/* Branch */}
             <div className="relative w-full">
               <Popover open={branchOpen} onOpenChange={setBranchOpen}>
@@ -172,7 +197,7 @@ export default function CompleteProfilePage() {
                     type="button"
                     role="combobox"
                     aria-expanded={branchOpen}
-                    className="w-full justify-between border border-gray-300 p-3 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-yellow-400 flex"
+                    className="w-full justify-between border border-gray-300 p-3 sm:p-3.5 rounded-lg text-left focus:outline-none focus:ring-2 focus:ring-yellow-400 flex h-12 sm:h-12"
                   >
                     {branch || "Select Branch/Stream"}
                     <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
@@ -181,8 +206,13 @@ export default function CompleteProfilePage() {
 
                 <PopoverContent side="bottom" align="start" className="w-full max-h-60 overflow-auto p-0 z-50">
                   <Command>
-                    <CommandInput placeholder="Search branch..." />
-                    <CommandEmpty>No branch found.</CommandEmpty>
+                    <CommandInput
+                      placeholder="Search or type branch..."
+                      onValueChange={(value) => {
+                        setBranch(value); // allow typing custom branch
+                      }}
+                    />
+                    <CommandEmpty>No branch found. You can type your branch/stream.</CommandEmpty>
                     <CommandGroup>
                       {branches.map((b) => (
                         <CommandItem
@@ -205,20 +235,23 @@ export default function CompleteProfilePage() {
               </Popover>
             </div>
 
+
             {/* Year */}
-            <select
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-              required
-              className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-            >
-              <option value="">Select Year</option>
-              <option value="1">1st Year</option>
-              <option value="2">2nd Year</option>
-              <option value="3">3rd Year</option>
-              <option value="4">4th Year</option>
-              <option value="5">5th Year</option>
-            </select>
+            <div className="relative w-full">
+              <select
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                required
+                className="w-full border border-gray-300 p-3 sm:p-3.5 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 h-12 sm:h-12"
+              >
+                <option value="">Select Year</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+                <option value="5">5th Year</option>
+              </select>
+            </div>
           </div>
 
           {/* Mobile */}
@@ -230,21 +263,27 @@ export default function CompleteProfilePage() {
             value={mobile}
             onChange={(e) => setMobile(e.target.value)}
             required
-            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="w-full border border-gray-300 p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 placeholder:text-gray-700"
           />
 
           {/* Submit */}
           <button
             type="submit"
-            className={`bg-yellow-500 text-white w-full py-3 rounded-lg font-semibold shadow-md hover:bg-yellow-600 transition ${
-              loading ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            className={`bg-yellow-500 text-white w-full py-4 rounded-lg font-semibold shadow-md hover:bg-yellow-600 transition flex items-center justify-center gap-2 ${loading ? "opacity-90 cursor-not-allowed" : ""
+              }`}
             disabled={loading}
           >
-            {loading ? "Saving..." : "Save Profile"}
+            {loading ? (
+              <>
+                <LoaderOne />
+              </>
+            ) : (
+              "Save Profile"
+            )}
           </button>
         </form>
       </div>
     </main>
+
   );
 }

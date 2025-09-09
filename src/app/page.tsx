@@ -35,6 +35,7 @@ import { FAQSection } from "../components/Faq";
 import { ContactSection } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { LoaderThree } from "@/components/loader";
+import LoaderDash from "@/components/Loaderdash";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function LandingPage() {
@@ -64,6 +65,19 @@ export default function LandingPage() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* <AnimatePresence mode="wait">
+        {isLoading && (
+          <motion.div
+            key="loader"
+            className="fixed inset-0 flex items-center justify-center bg-white z-50"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <LoaderDash />
+          </motion.div>
+        )}
+      </AnimatePresence> */}
 
       {/* Page Content */}
       <main className="flex flex-col min-h-screen bg-white">
