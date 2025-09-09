@@ -6,7 +6,7 @@ import { SignInButton } from '@clerk/nextjs';
 import { motion } from 'framer-motion';
 import { MoveRight } from "lucide-react";
 import TextType from './ui/typetext';
-import { SignInButton } from '@clerk/nextjs';
+
 export function HeroSection() {
   const containerVariants = {
     hidden: { opacity: 0 },
