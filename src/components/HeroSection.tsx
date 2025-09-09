@@ -2,6 +2,7 @@
 
 "use client";
 
+import { SignInButton } from '@clerk/nextjs';
 import { motion } from 'framer-motion';
 import { MoveRight } from "lucide-react";
 import TextType from './ui/typetext';
@@ -85,7 +86,7 @@ export function HeroSection() {
           </motion.h1>
 
           <motion.p
-        
+
             className="mt-4 max-w-lg mx-auto text-base text-gray-700 sm:text-lg lg:mx-0"
             variants={itemVariants}
           >

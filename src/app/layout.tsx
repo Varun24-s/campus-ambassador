@@ -32,10 +32,13 @@ export default function RootLayout({
           card: "shadow-lg rounded-xl p-4",
         },
       }}
-      afterSignInUrl="/dashboard"          
+      afterSignInUrl="/dashboard"
       afterSignUpUrl="/complete-profile"
     >
       <html lang="en">
+        <head>
+          <link rel="icon" href="/logo.webp" sizes="any" />
+        </head>
         <body className={`${myFont.className} bg-white min-h-screen`}>
           {children}
         </body>

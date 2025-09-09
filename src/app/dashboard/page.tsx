@@ -5,11 +5,9 @@ import ProfileCard from "@/components/ProfileCard";
 import Leaderboard from "@/components/Leaderboard";
 import TaskTabs from "@/components/TaskTabs";
 import NavDash from "@/components/NavDash";
-import Silk from "@/components/Silk";
 import LoaderDash from "@/components/Loaderdash";
 import { LoaderThree } from '@/components/loader';
 
-import Plasma from "@/components/Plasma";
 
 export default function DashboardPage() {
     const [loading, setLoading] = useState(true);
