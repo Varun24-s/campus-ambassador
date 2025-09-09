@@ -24,10 +24,10 @@ export function Footer() {
         transition={{ duration: 0.8 }}
       >
         <div className="flex flex-col items-center">
-          {/* Logo and Brand */}
+
           <Link href="/" className="mb-5">
             <Image
-              src="/logo.webp" // Your logo path
+              src="/logo.webp"
               alt="E-Cell Logo"
               width={55}
               height={55}
@@ -40,7 +40,7 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Navigation Links */}
+
         <nav className="my-8 flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Footer">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} className="text-base text-gray-300 hover:text-amber-400 transition-colors">
@@ -49,14 +49,14 @@ export function Footer() {
           ))}
         </nav>
 
-        {/* Social Icons */}
+
         <div className="flex justify-center space-x-6">
           <a href="#" className="text-gray-400 hover:text-white transition-colors"><span className="sr-only">LinkedIn</span><Linkedin /></a>
           <a href="#" className="text-gray-400 hover:text-white transition-colors"><span className="sr-only">Twitter</span><Twitter /></a>
           <a href="#" className="text-gray-400 hover:text-white transition-colors"><span className="sr-only">Instagram</span><Instagram /></a>
         </div>
 
-        {/* Copyright */}
+      
         <div className="mt-10 pt-8 border-t border-gray-800/50">
           <p className="text-base text-gray-500">
             &copy; {new Date().getFullYear()} E-Cell, Bhopal. All Rights Reserved.

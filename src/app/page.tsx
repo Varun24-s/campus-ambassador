@@ -43,14 +43,13 @@ export default function LandingPage() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500); // 2.5s fake loading
-
+    }, 2500);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {/* Loader */}
+
       <AnimatePresence mode="wait">
         {isLoading && (
           <motion.div
@@ -65,7 +64,7 @@ export default function LandingPage() {
         )}
       </AnimatePresence>
 
-      {/* Page Content */}
+
       <main className="flex flex-col min-h-screen bg-amber-50/50">
         <Navbar />
         <HeroSection />

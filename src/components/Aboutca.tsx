@@ -13,7 +13,7 @@ export function ProgramInfoSection() {
       id: 0,
       title: "What is a CA?",
       icon: <Zap />,
-      image: "/ambassador.jpg", // Replace with relevant image
+      image: "/ambassador.jpg",
       heading: "Be the Face of Innovation on Your Campus",
       description: "A Campus Ambassador (CA) is a vital link between the E-Cell and their college. You are a leader, a brand evangelist, and an on-ground innovator, chosen to represent our vision and ignite the entrepreneurial spirit among your peers.",
       points: [
@@ -27,7 +27,7 @@ export function ProgramInfoSection() {
       id: 1,
       title: "Benefits of Joining",
       icon: <Star />,
-      image: "/benefits.jpg", // Replace with relevant image
+      image: "/benefits.jpg",
       heading: "Unlock Exclusive Perks & Opportunities",
       description: "Joining our CA program is more than just a title; it's a launchpad for your career. We invest in our ambassadors to help them grow personally and professionally.",
       points: [
@@ -41,7 +41,7 @@ export function ProgramInfoSection() {
       id: 2,
       title: "Your Responsibilities",
       icon: <Target />,
-      image: "/responsibilities.jpg", // Replace with relevant image
+      image: "/responsibilities.jpg",
       heading: "Drive Change and Make an Impact",
       description: "As a CA, you will be entrusted with key responsibilities that directly contribute to our mission and help you build a powerful skill set.",
       points: [
@@ -94,7 +94,6 @@ export function ProgramInfoSection() {
           ))}
         </div>
 
-        {/* Tab Content */}
         <div className="mt-12">
           <AnimatePresence mode="wait">
             <motion.div
@@ -105,7 +104,7 @@ export function ProgramInfoSection() {
               exit="exit"
               className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center"
             >
-              {/* Left Column: Text Content */}
+
               <div className="order-2 lg:order-1">
                 <h3 className="text-2xl md:text-3xl font-bold text-black">
                   {tabData[activeTab].heading}
@@ -123,7 +122,7 @@ export function ProgramInfoSection() {
                 </ul>
               </div>
 
-              {/* Right Column: Image */}
+            
               <div className="order-1 lg:order-2 relative w-full h-80 lg:h-96">
                 <Image
                   src={tabData[activeTab].image}

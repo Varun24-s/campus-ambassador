@@ -13,7 +13,7 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Effect to handle navbar background change on scroll
+
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 10);
@@ -23,11 +23,11 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: "About Us", href: "/about" },
-        { name: "Benefits", href: "/benefits" },
-        { name: "FAQs", href: "/faq" },
-        { name: "Terms", href: "/terms" },
-        { name: "Contact", href: "/contact" },
+        { name: "About Us", href: "#about" },
+        { name: "Benefits", href: "#program-info" },
+        { name: "FAQs", href: "#faq" },
+        { name: "Terms", href: "#terms" },
+        { name: "Contact", href: "#contact" },
     ];
 
     const menuVariants = {
@@ -42,12 +42,12 @@ export default function Navbar() {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 shadow-md backdrop-blur-sm' : 'bg-transparent'
+                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-amber-50/80 shadow-md backdrop-blur-sm' : 'bg-transparent'
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
-                        {/* Logo */}
+
                         <Link href="/" className="flex-shrink-0">
                             <Image
                                 src="/logo.webp" // Assuming this is your logo path
@@ -58,7 +58,7 @@ export default function Navbar() {
                             />
                         </Link>
 
-                        {/* Desktop Nav links */}
+
                         <div className="hidden md:flex items-center space-x-8">
                             {navLinks.map((link) => (
                                 <Link key={link.name} href={link.href} className="text-gray-800 hover:text-amber-500 font-medium transition-colors">
@@ -67,7 +67,6 @@ export default function Navbar() {
                             ))}
                         </div>
 
-                        {/* Desktop Register button */}
                         <div className="hidden md:block">
                             <SignInButton
                                 mode="redirect"
@@ -85,7 +84,7 @@ export default function Navbar() {
                             </SignInButton>
                         </div>
 
-                        {/* Mobile Menu Button */}
+
                         <div className="md:hidden">
                             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-black focus:outline-none">
                                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -95,7 +94,7 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* Mobile Menu */}
+           
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div
@@ -103,7 +102,7 @@ export default function Navbar() {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="md:hidden fixed top-20 left-0 w-full bg-white shadow-lg z-40"
+                        className="md:hidden fixed top-20 left-0 w-full bg-amber-50/80 shadow-lg z-40"
                         onClick={() => setIsMenuOpen(false)}
                     >
                         <div className="flex flex-col items-center space-y-6 py-8">

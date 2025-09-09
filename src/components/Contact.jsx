@@ -33,7 +33,7 @@ export function ContactSection() {
         viewport={{ once: true, amount: 0.2 }}
         variants={containerVariants}
       >
-        {/* Left Column: Information */}
+
         <motion.div variants={itemVariants}>
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-black">
             Let's Build Together
@@ -57,14 +57,9 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* <div className="mt-12 flex items-center gap-6">
-            <a href="#" className="text-gray-500 hover:text-amber-500 transition-colors"><Linkedin className="w-7 h-7" /></a>
-            <a href="#" className="text-gray-500 hover:text-amber-500 transition-colors"><Twitter className="w-7 h-7" /></a>
-            <a href="#" className="text-gray-500 hover:text-amber-500 transition-colors"><Instagram className="w-7 h-7" /></a>
-          </div> */}
+
         </motion.div>
 
-        {/* Right Column: Contact Form */}
         <motion.div variants={itemVariants}>
           <form className="bg-amber-50/40 border border-amber-200/50 p-8 rounded-2xl shadow-lg space-y-6">
             <div className="space-y-2">
