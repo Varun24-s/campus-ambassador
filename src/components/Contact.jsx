@@ -1,110 +1,109 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Instagram } from 'lucide-react';
+import React from "react";
+import { motion } from "framer-motion";
+import { Linkedin, Mail, Instagram } from "lucide-react";
 
 export function ContactSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+  const leads = [
+    {
+      name: "Nidhi Singh Thakur",
+      role: "Promotions Lead",
+      img: "/Nidhi Singh Thakur.webp",
+      linkedin: "https://www.linkedin.com/in/nidhisinght78/",
+      mail: "pvt.nidhisingh07@gmail.com",
+      instagram: "https://www.instagram.com/_nidhiix_/?igsh=MWgzc3BpYm9tYndndQ%3D%3D#",
     },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
+    {
+      name: "Chinmay Solanki",
+      role: "Promotions Secretary",
+      img: "/Chinmay Solanki.webp",
+      linkedin: "https://www.linkedin.com/in/chinmay-solanki-609454267",
+      mail: "solankichinmay8@gmail.com",
+      instagram: "https://instagram.com/Chinmay_is/",
     },
-  };
+    {
+      name: "Khushi Verma",
+      role: "Administrative Lead",
+      img: "/Khushi Verma.webp",
+      linkedin: "https://www.linkedin.com/in/khushi-verma-966416290",
+      mail: "kv6265@gmail.com",
+      instagram: "https://www.instagram.com/_khushi_.verma?igsh=ZzJjY25uZ2JrdDI3",
+    },
+    {
+      name: "Shreyansh Awasthi",
+      role: "Corporate Relations Lead",
+      img: "/Shreyansh Awasthi.webp",
+      linkedin: "https://www.linkedin.com/in/shreyansh-awasthi-1545792b2",
+      mail: "shreyanshawasthi66@gmail.com",
+      instagram: "https://www.instagram.com/shreyansh_awasthi007?igsh=cHozYmFzbWM4dng=",
+    },
+  ];
 
   return (
-    <section id="contact" className="w-full bg-amber-50/50 text-black py-20 lg:py-28 px-4 overflow-hidden">
-      <motion.div
-        className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={containerVariants}
-      >
+    <section className="w-full bg-amber-50/50 py-20 lg:py-28 px-4 flex justify-center items-center">
+      <div className="max-w-7xl w-full">
+        {/* Heading */}
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-black mb-12">
+          Contact Us
+        </h2>
 
-        <motion.div variants={itemVariants}>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-black">
-            Let's Build Together
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-lg">
-            Have a question, a proposal, or just want to say hello? We'd love to hear from you. Reach out and let's start a conversation.
-          </p>
+        {/* Profile Cards */}
+        <div
+          className="
+            grid 
+            grid-cols-1 
+            sm:grid-cols-3 
+            md:grid-cols-2 
+            lg:grid-cols-4 
+            gap-6
+            justify-items-center
+          "
+        >
+          {leads.map((lead, idx) => (
+            <motion.div
+              key={idx}
+              className="relative overflow-hidden bg-white/80 border border-amber-200/50 p-4 rounded-2xl shadow-lg text-center flex flex-col items-center w-full max-w-xs group"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              {/* Background expanding avatar (hidden initially) */}
+              {/* <motion.img
+                src={lead.img}
+                alt={lead.name}
+                className="absolute top-1/2 left-1/2 w-20 h-20 rounded-full object-cover shadow-md border-4 border-white transform -translate-x-1/2 -translate-y-1/2 z-0
+                opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-[8] transition-all duration-500 ease-in-out"
+              /> */}
 
-          <div className="mt-10 space-y-6">
-            <div className="flex items-center gap-4">
-              <Mail className="w-6 h-6 text-amber-500 flex-shrink-0" />
-              <span className="text-gray-700 text-lg">contact@ecell.com</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Phone className="w-6 h-6 text-amber-500 flex-shrink-0" />
-              <span className="text-gray-700 text-lg">+91 9685694466</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <MapPin className="w-6 h-6 text-amber-500 flex-shrink-0" />
-              <span className="text-gray-700 text-lg">Bhopal, Madhya Pradesh, India</span>
-            </div>
-          </div>
+              {/* Foreground content */}
+              <div className="relative z-10 flex flex-col items-center">
+                {/* Foreground avatar (visible initially, hidden on hover) */}
+                <img
+                  src={lead.img}
+                  alt={lead.name}
+                  className="w-40 h-40 rounded-full object-cover mb-4 shadow-md border-4 border-white hover:scale-1.1 "
+                />
+                <h3 className="text-xl font-bold text-black">{lead.name}</h3>
+                <p className="text-sm text-gray-600 mb-4">{lead.role}</p>
+                <div className="flex justify-center gap-4 text-amber-500">
+                  <a href={lead.linkedin} target="_blank">
+                    <Linkedin className="w-6 h-6 hover:text-amber-700 transition-colors" />
+                  </a>
+                  <a href={lead.instagram} target="_blank">
+                    <Instagram className="w-6 h-6 hover:text-amber-700 transition-colors" />
+                  </a>
+                  <a href={lead.mail} target="_blank">
+                    <Mail className="w-6 h-6 hover:text-amber-700 transition-colors" />
+                  </a>
+                </div>
+              </div>
 
-
-        </motion.div>
-
-        <motion.div variants={itemVariants}>
-          <form className="bg-amber-50/40 border border-amber-200/50 p-8 rounded-2xl shadow-lg space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium text-gray-800">Full Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
-                placeholder="John Doe"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-gray-800">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
-                placeholder="you@example.com"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="message" className="text-sm font-medium text-gray-800">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="5"
-                className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2.5 text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
-                placeholder="Your message here..."
-              ></textarea>
-            </div>
-            <div>
-              <motion.button
-                type="submit"
-                className="w-full px-8 py-3 text-lg font-bold text-white bg-black rounded-full overflow-hidden transition-transform transform hover:bg-gray-800"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Send Message
-              </motion.button>
-            </div>
-          </form>
-        </motion.div>
-      </motion.div>
+              {/* Overlay for readability
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-5"></div> */}
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
