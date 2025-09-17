@@ -122,7 +122,7 @@ export function ProgramInfoSection() {
                 </ul>
               </div>
 
-            
+
               <div className="order-1 lg:order-2 relative w-full h-80 lg:h-96">
                 <Image
                   src={tabData[activeTab].image}

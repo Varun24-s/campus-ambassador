@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Linkedin, Mail, Instagram } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa"; 
+import { FaWhatsapp } from "react-icons/fa";
 
 export function ContactSection() {
   const leads = [
@@ -14,7 +14,7 @@ export function ContactSection() {
       linkedin: "https://www.linkedin.com/in/nidhisinght78/",
       mail: "mailto:pvt.nidhisingh07@gmail.com",
       instagram: "https://www.instagram.com/_nidhiix_/?igsh=MWgzc3BpYm9tYndndQ%3D%3D#",
-      whatsapp: "https://wa.me/9479606424", 
+      whatsapp: "https://wa.me/9479606424",
     },
     {
       name: "Chinmay Solanki",
@@ -56,11 +56,11 @@ export function ContactSection() {
         {/* Profile Cards */}
         <div
           className="
-            grid 
-            grid-cols-1 
-            sm:grid-cols-3 
-            md:grid-cols-2 
-            lg:grid-cols-4 
+            grid
+            grid-cols-1
+            sm:grid-cols-3
+            md:grid-cols-2
+            lg:grid-cols-4
             gap-6
             justify-items-center
           "
@@ -68,7 +68,7 @@ export function ContactSection() {
           {leads.map((lead, idx) => (
             <motion.div
               key={idx}
-              className="relative overflow-hidden bg-white/80 border border-amber-200/50 p-4 rounded-2xl shadow-lg text-center flex flex-col items-center w-full max-w-xs group"
+              className="relative overflow-hidden bg-amber/80 border border-amber-200/50 p-4 rounded-2xl shadow-lg text-center flex flex-col items-center w-full max-w-xs group"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 200 }}
             >
