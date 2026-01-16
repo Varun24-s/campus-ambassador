@@ -12,7 +12,7 @@ export async function GET() {
     const sheets = google.sheets({ version: "v4", auth });
     const res = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_SHEET_ID!,
-      range: "Tasks!A:F", 
+      range: "Tasks!A:F",
     });
 
     const rows = res.data.values || [];
@@ -28,7 +28,7 @@ export async function GET() {
 
     return NextResponse.json(tasks);
   } catch (err: any) {
-    console.error("Error fetching tasks:", err);
+    // console.error("Error fetching tasks:", err);
     return NextResponse.json(
       { error: err.message || "Failed to fetch tasks" },
       { status: 500 }

@@ -68,7 +68,7 @@ export async function GET() {
 
     return NextResponse.json(formattedProfile);
   } catch (err: any) {
-    console.error("Error fetching profile:", err);
+    // console.error("Error fetching profile:", err);
     return NextResponse.json(
       { error: err.message || "Failed to fetch profile" },
       { status: 500 }

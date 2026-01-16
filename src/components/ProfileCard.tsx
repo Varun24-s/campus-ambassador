@@ -25,14 +25,14 @@ export default function ProfileCard({ profileData }: { profileData: Profile }) {
       try {
         const res = await fetch("/api/get-profile");
         if (!res.ok) {
-          console.error("Profile fetch failed", await res.json());
+          // console.error("Profile fetch failed", await res.json());
           setProfile(null);
           return;
         }
         const data = await res.json();
         setProfile(data);
       } catch (err) {
-        console.error("Error fetching profile:", err);
+        // console.error("Error fetching profile:", err);
         setProfile(null);
       } finally {
         setLoading(false);

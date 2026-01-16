@@ -69,7 +69,7 @@ export default function CompleteProfilePage() {
         const data = await res.json();
         setCollegeOptions(data);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     };
 
@@ -96,7 +96,7 @@ export default function CompleteProfilePage() {
 
       router.push("/dashboard");
     } catch (err) {
-      console.error("Error saving profile:", err);
+      // console.error("Error saving profile:", err);
       alert("Failed to save profile. Please try again.");
       setLoading(false);
     }

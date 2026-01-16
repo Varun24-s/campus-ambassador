@@ -23,32 +23,32 @@ export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
   const userEmail = user?.primaryEmailAddress?.emailAddress || "";
 
   // 🔍 Debug input data
-  console.log("LeaderboardData prop:", leaderboardData);
-  console.log("Type of leaderboardData:", typeof leaderboardData);
+  // console.log("LeaderboardData prop:", leaderboardData);
+  // console.log("Type of leaderboardData:", typeof leaderboardData);
   if (leaderboardData && !Array.isArray(leaderboardData)) {
-    console.warn("⚠️ leaderboardData is NOT an array. Keys:", Object.keys(leaderboardData));
+    // console.warn("⚠️ leaderboardData is NOT an array. Keys:", Object.keys(leaderboardData));
   }
 
   useEffect(() => {
     if (!Array.isArray(leaderboardData)) {
-      console.error("leaderboardData is not an array in useEffect", leaderboardData);
+      // console.error("leaderboardData is not an array in useEffect", leaderboardData);
       return;
     }
 
-    console.log("leaderboardData is an array, length:", leaderboardData.length);
+    // console.log("leaderboardData is an array, length:", leaderboardData.length);
 
     // Remove duplicates & sort
     const uniqueProfiles = Array.from(
       new Map(leaderboardData.map((p: Profile) => [p.Email, p])).values()
     );
 
-    console.log("🧹 Unique profiles:", uniqueProfiles);
+    // console.log("🧹 Unique profiles:", uniqueProfiles);
 
     const sortedProfiles = uniqueProfiles.sort(
       (a, b) => (b.points || 0) - (a.points || 0)
     );
 
-    console.log("📈 Sorted profiles:", sortedProfiles);
+    // console.log("📈 Sorted profiles:", sortedProfiles);
 
     setProfiles(sortedProfiles);
     setFilteredProfiles(sortedProfiles);
@@ -64,7 +64,7 @@ export default function Leaderboard({ leaderboardData }: LeaderboardProps) {
         p.College.toLowerCase().includes(lowerSearch)
     );
 
-    console.log("🔍 Filtered profiles:", filtered);
+    // console.log("🔍 Filtered profiles:", filtered);
 
     setFilteredProfiles(filtered);
   }, [search, profiles]);

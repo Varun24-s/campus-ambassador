@@ -94,7 +94,7 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-           
+
             <AnimatePresence>
                 {isMenuOpen && (
                     <motion.div

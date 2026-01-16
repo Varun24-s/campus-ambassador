@@ -64,19 +64,6 @@ export default function LandingPage() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* <AnimatePresence mode="wait">
-        {isLoading && (
-          <motion.div
-            key="loader"
-            className="fixed inset-0 flex items-center justify-center bg-white z-50"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <LoaderDash />
-          </motion.div>
-        )}
-      </AnimatePresence> */}
 
 
       <main className="flex flex-col min-h-screen bg-amber-50/50">

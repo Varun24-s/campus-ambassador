@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { google } from "googleapis";
 
 export async function POST(req: NextRequest) {
-  console.log("API /save-to-sheets called");
+  // console.log("API /save-to-sheets called");
 
   try {
     const data = await req.json();
-    console.log("Request body:", data);
+    // console.log("Request body:", data);
 
     const { name, email, mobile, college, branch, year } = data;
 
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ message: "Saved to Google Sheets" });
   } catch (err: any) {
-    console.error("Error in /save-to-sheets:", err);
+    // console.error("Error in /save-to-sheets:", err);
     return NextResponse.json(
       { error: err.message || "Unknown error" },
       { status: 500 }

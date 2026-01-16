@@ -40,7 +40,7 @@ export async function GET() {
 
     return NextResponse.json(leaderboard);
   } catch (err: any) {
-    console.error("Error in /get-leaderboard:", err);
+    // console.error("Error in /get-leaderboard:", err);
     return NextResponse.json(
       { error: err.message || "Unknown error" },
       { status: 500 }
