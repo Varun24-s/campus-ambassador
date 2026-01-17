@@ -36,8 +36,8 @@ export function AnimatedStat({ value }: AnimatedStatProps) {
   }, [count, displayValue]);
 
   return (
-   
-    <motion.span ref={ref} className="text-2xl font-bold text-black">
+
+    <motion.span ref={ref} className="text-2xl font-bold text-white">
       {displayValue}
     </motion.span>
   );

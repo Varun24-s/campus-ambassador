@@ -70,40 +70,96 @@
 
 
 
+// import { motion } from "framer-motion";
+// import React from "react";
+
+
+
+
+// export const LoaderThree = () => {
+//   return (
+//     <motion.svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="24"
+//       height="24"
+//       viewBox="0 0 24 24"
+//       fill="none"
+//       stroke="currentColor"
+//       strokeWidth="1"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//       className="h-20 w-20 stroke-neutral-500 [--fill-final:var(--color-yellow-300)] [--fill-initial:var(--color-neutral-50)] dark:stroke-neutral-100 dark:[--fill-final:var(--color-yellow-500)] dark:[--fill-initial:var(--color-neutral-800)]">
+//       <motion.path stroke="none" d="M0 0h24v24H0z" fill="none" />
+//       <motion.path
+//         initial={{ pathLength: 0, fill: "var(--fill-initial)" }}
+//         animate={{ pathLength: 1, fill: "var(--fill-final)" }}
+//         transition={{
+//           duration: 2,
+//           ease: "easeInOut",
+//           repeat: Infinity,
+//           repeatType: "reverse",
+//         }}
+//         d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11" />
+//     </motion.svg>
+//   );
+// };
+
+
+
+
 import { motion } from "framer-motion";
 import React from "react";
 
-
-
-
 export const LoaderThree = () => {
   return (
-    <motion.svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-20 w-20 stroke-neutral-500 [--fill-final:var(--color-yellow-300)] [--fill-initial:var(--color-neutral-50)] dark:stroke-neutral-100 dark:[--fill-final:var(--color-yellow-500)] dark:[--fill-initial:var(--color-neutral-800)]">
-      <motion.path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <motion.path
-        initial={{ pathLength: 0, fill: "var(--fill-initial)" }}
-        animate={{ pathLength: 1, fill: "var(--fill-final)" }}
-        transition={{
-          duration: 2,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "reverse",
+    <div className="flex flex-col items-center justify-center w-full h-full bg-[#2b1812] relative overflow-hidden">
+
+      {/* Optional: Subtle Dirt Texture Overlay using CSS gradient pattern */}
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
+            backgroundImage: `repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), repeating-linear-gradient(45deg, #000 25%, #2b1812 25%, #2b1812 75%, #000 75%, #000)`,
+            backgroundPosition: '0 0, 10px 10px',
+            backgroundSize: '20px 20px'
         }}
-        d="M13 3l0 7l6 0l-8 11l0 -7l-6 0l8 -11" />
-    </motion.svg>
+      />
+
+      <div className="z-10 flex flex-col items-center gap-8 max-w-md w-full px-8">
+        {/* LOGO AREA */}
+        <div className="flex flex-col items-center gap-2">
+            <h1 className="text-4xl md:text-5xl font-sans text-white tracking-widest" style={{ textShadow: '4px 4px 0 #000' }}>
+              E-CELL
+            </h1>
+            <p className="text-[#a0a0a0] font-mono text-lg animate-pulse">
+              Building Terrain...
+            </p>
+        </div>
+
+        {/* THE LOADING BAR */}
+        <div className="w-full h-6 border-2 border-white bg-black p-0.5 shadow-[4px_4px_0_rgba(0,0,0,0.5)]">
+          <motion.div
+            className="h-full bg-[#3c8527]" // The Classic Green
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{
+                duration: 2.2,
+                ease: "linear", // Linear looks more "robotic" and game-like
+                repeat: 0
+            }}
+          />
+        </div>
+
+        {/* Funny Loading Tips (Splash Text Style) */}
+        <div className="text-[#ffff55] font-mono text-sm mt-4 text-center">
+            <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+            >
+                Tip: Don't dig straight down!
+            </motion.span>
+        </div>
+      </div>
+    </div>
   );
 };
-
-
-
-
